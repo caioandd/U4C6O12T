@@ -152,6 +152,7 @@ int main()
   g=1;
   b=1;
   padrao(limpa, valor_led, pio, sm, r, g, b); // Limpa matriz WS2812
+
   ssd1306_draw_string(&ssd, "LED VERDE OFF", 8, 10); // Desenha estado do LED verde (inicial)
   ssd1306_draw_string(&ssd, "LED AZUL OFF", 8, 48); // Desenha estado do LED azul (inicial)
   ssd1306_send_data(&ssd); // Atualiza o display
@@ -163,7 +164,7 @@ int main()
     ssd1306_draw_string(&ssd, entrada, 64, 30); // Desenha o caractere solicitado     
     if (entrada[0] >= '0' && entrada[0] <= '9')
     {
-      int numero = atoi(entrada);
+      int numero = atoi(entrada); //Converte o char em int
       padrao(nums[numero], valor_led, pio, sm, r, g, b);//Chamada para matriz
     }
     
@@ -210,7 +211,7 @@ static void gpio_irq_handler(uint gpio, uint32_t events){
         ultima_interrup = tempo_interrup; // Atualiza o tempo da última interrupção
       if (gpio_get(BOTAO_A)==0)
       {
-        estado_g = !estado_g;
+        estado_g = !estado_g; //Alterna o estado do LED
         gpio_put(LED_G, estado_g);
         printf("LED VERDE %s\n", estado_g ? "ON" : "OFF");
           if (estado_g)
@@ -225,7 +226,7 @@ static void gpio_irq_handler(uint gpio, uint32_t events){
 
       else if (gpio_get(BOTAO_B)==0)
       {
-        estado_b = !estado_b;
+        estado_b = !estado_b; // Alterna o estado do LED
         gpio_put(LED_B, estado_b);
         printf("LED AZUL %s\n", estado_b ? "ON" : "OFF");
           if (estado_b)

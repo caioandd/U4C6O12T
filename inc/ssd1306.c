@@ -157,17 +157,14 @@ void ssd1306_draw_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y)
 {
     uint16_t index = 0;
 
-    // Determina o índice para letras maiúsculas (A-Z)
     if (c >= 'A' && c <= 'Z')
     {
         index = (c - 'A' + 11) * 8; // Letras maiúsculas começam em 11
     }
-    // Determina o índice para letras minúsculas (a-z)
     else if (c >= 'a' && c <= 'z')
     {
         index = (c - 'a' + 37) * 8; // Letras minúsculas começam em 37
     }
-    // Determina o índice para números (0-9)
     else if (c >= '0' && c <= '9')
     {
         index = (c - '0' + 1) * 8; // Números começam em 1
